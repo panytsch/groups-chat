@@ -1,9 +1,9 @@
 package models
 
 import (
+	"github.com/panytsch/groups-chat/datastore"
 	"gopkg.in/mgo.v2/bson"
 	"strings"
-	"github.com/ievgen-ma/groups-chat/datastore"
 )
 
 type User struct {

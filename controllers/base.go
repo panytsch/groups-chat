@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/ievgen-ma/groups-chat/models"
 	"errors"
 	"github.com/ant0ine/go-json-rest/rest"
-	"github.com/ievgen-ma/groups-chat/app/jwt"
+	"github.com/panytsch/groups-chat/app/jwt"
+	"github.com/panytsch/groups-chat/models"
 )
 
 type BaseController struct {

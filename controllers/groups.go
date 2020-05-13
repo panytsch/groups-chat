@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"github.com/ant0ine/go-json-rest/rest"
+	"github.com/panytsch/groups-chat/app"
+	"github.com/panytsch/groups-chat/messaging/events"
+	"github.com/panytsch/groups-chat/models"
 	"net/http"
-	"github.com/ievgen-ma/groups-chat/models"
-	"github.com/ievgen-ma/groups-chat/messaging/events"
-	"github.com/ievgen-ma/groups-chat/app"
 )
 
 type GroupsController struct {

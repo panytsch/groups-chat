@@ -2,10 +2,10 @@ package models
 
 import (
 	"errors"
+	"github.com/panytsch/groups-chat/app"
+	"github.com/twinj/uuid"
 	"regexp"
 	"strings"
-	"github.com/twinj/uuid"
-	"github.com/ievgen-ma/groups-chat/app"
 )
 
 type sessionsHandler struct {

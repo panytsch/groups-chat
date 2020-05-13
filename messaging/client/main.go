@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gorilla/websocket"
-	"github.com/ievgen-ma/groups-chat/app"
-	"github.com/ievgen-ma/groups-chat/datastore"
-	"github.com/ievgen-ma/groups-chat/protocol"
 	"github.com/ant0ine/go-json-rest/rest"
-	"github.com/ievgen-ma/groups-chat/models"
+	"github.com/gorilla/websocket"
+	"github.com/panytsch/groups-chat/app"
+	"github.com/panytsch/groups-chat/datastore"
+	"github.com/panytsch/groups-chat/models"
+	"github.com/panytsch/groups-chat/protocol"
 )
 
 const (

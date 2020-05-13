@@ -4,7 +4,7 @@ import (
 	"github.com/ant0ine/go-json-rest/rest"
 	"net/http"
 
-	"github.com/ievgen-ma/groups-chat/app/jwt"
+	"github.com/panytsch/groups-chat/app/jwt"
 )
 
 type UsersController struct {
@@ -51,7 +51,7 @@ func (c *UsersController) Register(w rest.ResponseWriter, r *rest.Request) {
 		return
 	}
 
-	u, err := users.Register(in.Username, in.Email, in.Password);
+	u, err := users.Register(in.Username, in.Email, in.Password)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.WriteJson(map[string]string{"error": err.Error()})

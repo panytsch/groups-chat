@@ -1,10 +1,10 @@
 package models
 
 import (
-	"gopkg.in/mgo.v2/bson"
-	"github.com/ievgen-ma/groups-chat/datastore"
-	"github.com/ievgen-ma/groups-chat/protocol"
+	"github.com/panytsch/groups-chat/datastore"
+	"github.com/panytsch/groups-chat/protocol"
 	"github.com/twinj/uuid"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type Event struct {

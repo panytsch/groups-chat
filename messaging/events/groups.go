@@ -1,8 +1,8 @@
 package events
 
 import (
-	"github.com/ievgen-ma/groups-chat/models"
-	"github.com/ievgen-ma/groups-chat/protocol"
+	"github.com/panytsch/groups-chat/models"
+	"github.com/panytsch/groups-chat/protocol"
 )
 
 func NewGroup(g *models.Group) *Event {

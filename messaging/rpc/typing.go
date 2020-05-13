@@ -1,11 +1,11 @@
 package rpc
 
 import (
-	"github.com/ievgen-ma/groups-chat/app"
-	"github.com/ievgen-ma/groups-chat/messaging/client"
-	"github.com/ievgen-ma/groups-chat/messaging/events"
-	"github.com/ievgen-ma/groups-chat/models"
-	"github.com/ievgen-ma/groups-chat/protocol"
+	"github.com/panytsch/groups-chat/app"
+	"github.com/panytsch/groups-chat/messaging/client"
+	"github.com/panytsch/groups-chat/messaging/events"
+	"github.com/panytsch/groups-chat/models"
+	"github.com/panytsch/groups-chat/protocol"
 )
 
 type typing struct{}

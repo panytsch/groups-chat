@@ -1,9 +1,9 @@
 package models
 
 import (
-	"github.com/ievgen-ma/groups-chat/app"
+	"github.com/panytsch/groups-chat/app"
+	"github.com/panytsch/groups-chat/datastore"
 	"github.com/twinj/uuid"
-	"github.com/ievgen-ma/groups-chat/datastore"
 	"gopkg.in/mgo.v2/bson"
 )
 

@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/ant0ine/go-json-rest/rest"
+	"github.com/panytsch/groups-chat/models"
 	"net/http"
-	"github.com/ievgen-ma/groups-chat/models"
 )
 
 type SessionsController struct {

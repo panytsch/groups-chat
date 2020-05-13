@@ -1,8 +1,8 @@
 package models
 
 import (
-	"github.com/ievgen-ma/groups-chat/datastore"
 	"fmt"
+	"github.com/panytsch/groups-chat/datastore"
 	"gopkg.in/mgo.v2/bson"
 )
 

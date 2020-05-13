@@ -4,11 +4,11 @@ import (
 	"github.com/twinj/uuid"
 	"strings"
 
-	"github.com/pkg/errors"
 	"github.com/asaskevich/govalidator"
+	"github.com/panytsch/groups-chat/app"
+	"github.com/panytsch/groups-chat/datastore"
+	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
-	"github.com/ievgen-ma/groups-chat/app"
-	"github.com/ievgen-ma/groups-chat/datastore"
 	"gopkg.in/mgo.v2/bson"
 )
 

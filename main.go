@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 
-	"github.com/ievgen-ma/groups-chat/app"
-	"github.com/ievgen-ma/groups-chat/controllers"
-	"github.com/ievgen-ma/groups-chat/messaging"
 	"github.com/ant0ine/go-json-rest/rest"
+	"github.com/panytsch/groups-chat/app"
+	"github.com/panytsch/groups-chat/controllers"
+	"github.com/panytsch/groups-chat/messaging"
 )
 
 var (

@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/ievgen-ma/groups-chat/datastore"
+	"github.com/panytsch/groups-chat/datastore"
 	"github.com/twinj/uuid"
 )
 
