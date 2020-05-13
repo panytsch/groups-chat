@@ -36,5 +36,5 @@ func main() {
 		app.Logger.Fatal(err)
 	}
 	api.SetApp(r)
-	http.ListenAndServe(":3000", api.MakeHandler())
+	_ = http.ListenAndServe(":3000", api.MakeHandler())
 }

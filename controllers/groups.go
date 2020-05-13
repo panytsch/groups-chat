@@ -19,7 +19,7 @@ func NewGroupController() *GroupsController {
 func (c *GroupsController) Create(w rest.ResponseWriter, r *rest.Request) {
 	if err := c.Authenticate(r); err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 	in := struct {
@@ -29,7 +29,7 @@ func (c *GroupsController) Create(w rest.ResponseWriter, r *rest.Request) {
 
 	if err := r.DecodeJsonPayload(&in); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
@@ -38,7 +38,7 @@ func (c *GroupsController) Create(w rest.ResponseWriter, r *rest.Request) {
 	g, err := models.Groups.Create(in.Name, c.User.ID, in.UserIDs)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
@@ -48,13 +48,13 @@ func (c *GroupsController) Create(w rest.ResponseWriter, r *rest.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
-	w.WriteJson(map[string]string{"id": g.ID})
+	_ = w.WriteJson(map[string]string{"id": g.ID})
 }
 
 func (c *GroupsController) Join(w rest.ResponseWriter, r *rest.Request) {
 	if err := c.Authenticate(r); err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 	in := struct {
@@ -63,27 +63,27 @@ func (c *GroupsController) Join(w rest.ResponseWriter, r *rest.Request) {
 
 	if err := r.DecodeJsonPayload(&in); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
 	g, err := models.Groups.ByID(r.PathParam("id"))
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
 	if app.SliceContains(g.UserIDs, in.UserID) {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": "user_id exists"})
+		_ = w.WriteJson(map[string]string{"error": "user_id exists"})
 		return
 	}
 
 	g.UserIDs = append(g.UserIDs, in.UserID)
 	if err := g.UpdateUserIDs(); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
@@ -96,7 +96,7 @@ func (c *GroupsController) Join(w rest.ResponseWriter, r *rest.Request) {
 func (c *GroupsController) Left(w rest.ResponseWriter, r *rest.Request) {
 	if err := c.Authenticate(r); err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 	in := struct {
@@ -105,27 +105,27 @@ func (c *GroupsController) Left(w rest.ResponseWriter, r *rest.Request) {
 
 	if err := r.DecodeJsonPayload(&in); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
 	g, err := models.Groups.ByID(r.PathParam("id"))
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
 	if !app.SliceContains(g.UserIDs, in.UserID) {
 		w.WriteHeader(http.StatusNotFound)
-		w.WriteJson(map[string]string{"error": "user_id not found"})
+		_ = w.WriteJson(map[string]string{"error": "user_id not found"})
 		return
 	}
 
 	g.UserIDs = app.RemoveFromSlice(g.UserIDs, in.UserID)
 	if err := g.UpdateUserIDs(); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 

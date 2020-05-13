@@ -24,7 +24,7 @@ func init() {
 }
 
 func publishListener() {
-	datastore.Redis.Subscribe(func(channel string, data []byte) {
+	_ = datastore.Redis.Subscribe(func(channel string, data []byte) {
 		chunks := strings.Split(channel, ":")
 		sessionID := chunks[len(chunks)-1]
 		conn, err := client.ConnectionBySessionID(sessionID)
@@ -33,8 +33,8 @@ func publishListener() {
 			return
 		}
 		app.Logger.Infof("MESSAGING: Subscribe %s %v", sessionID, string(data))
-		conn.SetWriteDeadline(time.Now().Add(writeWait))
-		conn.WriteMessage(websocket.TextMessage, data)
+		_ = conn.SetWriteDeadline(time.Now().Add(writeWait))
+		_ = conn.WriteMessage(websocket.TextMessage, data)
 	})
 }
 
@@ -87,21 +87,21 @@ func dispatcher(c *client.Client, ch chan *protocol.RPC) {
 
 func reader(c *client.Client, ch chan *protocol.RPC) {
 	defer func() {
-		c.Close()
+		_ = c.Close()
 		app.Logger.Infof("MESSAGING: Disconnect reader for client ID %s", c.UserID)
 	}()
 
 	c.Setup()
 
 	for {
-		rpc, err := c.ReadRPC()
+		rpcc, err := c.ReadRPC()
 		if err != nil {
 			app.Logger.Infof("MESSAGING: Error in event from client ID %s: %v", c.UserID, err)
 			return
 		}
 
-		app.Logger.Infof("MESSAGING: Received event from client ID %s: %v", c.UserID, rpc)
+		app.Logger.Infof("MESSAGING: Received event from client ID %s: %v", c.UserID, rpcc)
 
-		ch <- rpc
+		ch <- rpcc
 	}
 }

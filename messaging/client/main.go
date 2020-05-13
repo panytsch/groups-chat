@@ -62,21 +62,21 @@ func ConnectionBySessionID(ID string) (*websocket.Conn, error) {
 }
 
 func (c *Client) SendCloseConnection() {
-	c.Connection.SetWriteDeadline(time.Now().Add(writeWait))
-	c.Connection.WriteMessage(websocket.CloseMessage, nil)
+	_ = c.Connection.SetWriteDeadline(time.Now().Add(writeWait))
+	_ = c.Connection.WriteMessage(websocket.CloseMessage, nil)
 }
 
 func (c *Client) SendPing() error {
-	c.Connection.SetWriteDeadline(time.Now().Add(writeWait))
+	_ = c.Connection.SetWriteDeadline(time.Now().Add(writeWait))
 	return c.Connection.WriteMessage(websocket.PingMessage, nil)
 }
 
 func (c *Client) Setup() {
 	c.Connection.SetReadLimit(maxMessageSize)
-	c.Connection.SetReadDeadline(time.Now().Add(pongWait))
+	_ = c.Connection.SetReadDeadline(time.Now().Add(pongWait))
 	c.Connection.SetPongHandler(func(string) error {
 		// set expire for client
-		c.Connection.SetReadDeadline(time.Now().Add(pongWait))
+		_ = c.Connection.SetReadDeadline(time.Now().Add(pongWait))
 		return nil
 	})
 }

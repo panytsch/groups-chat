@@ -40,7 +40,7 @@ func (events) Create(typ protocol.EventType, objectID string, clientIDs []string
 }
 
 func (events) DeleteOldEvents(objectID string, typ protocol.EventType, ts int64) {
-	datastore.DB.Events.RemoveAll(bson.M{
+	_, _ = datastore.DB.Events.RemoveAll(bson.M{
 		"object_id": objectID,
 		"timestamp": bson.M{"$lt": ts},
 		"type":      typ,

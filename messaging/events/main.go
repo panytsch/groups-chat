@@ -38,7 +38,7 @@ func (e *Event) SendToUsersWithoutMe(sessionID string, userIDs []string) {
 			if sessionID != s.ID {
 				app.Logger.Debugf("MESSAGING: Send event to session %v: %v", s, e)
 				c := client.NewFromSession(uID, s.ID)
-				c.SendEvent(e.Event)
+				_ = c.SendEvent(e.Event)
 			}
 		}
 	}
@@ -49,7 +49,7 @@ func (e *Event) SaveForUser(objectID, userID string) {
 }
 
 func (e *Event) SaveForUsers(objectID string, userIDs []string) {
-	models.Events.Create(e.Type, objectID, userIDs, e.Timestamp)
+	_, _ = models.Events.Create(e.Type, objectID, userIDs, e.Timestamp)
 }
 
 func (e *Event) DeleteOldEvents(objectID string) {

@@ -1,9 +1,9 @@
 package client
 
 import (
+	"fmt"
 	"github.com/gorilla/websocket"
 	"sync"
-	"fmt"
 )
 
 type clientRegistry struct {

@@ -24,19 +24,19 @@ func (c *UsersController) Login(w rest.ResponseWriter, r *rest.Request) {
 
 	if err := r.DecodeJsonPayload(&in); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
 	u, err := c.BaseController.Login(in.Username, in.Email, in.Password)
 	if err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
 	w.WriteHeader(http.StatusOK)
-	w.WriteJson(map[string]string{"token": jwt.Create(u.ID)})
+	_ = w.WriteJson(map[string]string{"token": jwt.Create(u.ID)})
 }
 func (c *UsersController) Register(w rest.ResponseWriter, r *rest.Request) {
 	in := struct {
@@ -47,17 +47,17 @@ func (c *UsersController) Register(w rest.ResponseWriter, r *rest.Request) {
 
 	if err := r.DecodeJsonPayload(&in); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
 	u, err := users.Register(in.Username, in.Email, in.Password)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.WriteJson(map[string]string{"error": err.Error()})
+		_ = w.WriteJson(map[string]string{"error": err.Error()})
 		return
 	}
 
 	w.WriteHeader(http.StatusCreated)
-	w.WriteJson(map[string]string{"id": u.ID})
+	_ = w.WriteJson(map[string]string{"id": u.ID})
 }

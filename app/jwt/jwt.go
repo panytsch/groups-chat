@@ -3,11 +3,11 @@ package jwt
 import (
 	"github.com/dgrijalva/jwt-go"
 
+	"errors"
 	"fmt"
-	"time"
 	"github.com/ant0ine/go-json-rest/rest"
 	"strings"
-	"errors"
+	"time"
 )
 
 const alg = "HS256"
